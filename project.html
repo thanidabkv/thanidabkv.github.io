@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project · Thanida Boonkangvan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,700&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: one case-study template for every project. Title block like a catalogue entry,
+   a lead image, the write-up in two columns (labels left, text right), then a gallery and next/previous. */
+:root{
+  --paper:#EDEFEA; --paper-2:#E3E7E1; --ink:#141B18; --muted:#58655F;
+  --celadon:#3D6A58; --glaze:#A9C6B6; --line:rgba(20,27,24,.14);
+  --display:"EB Garamond","Adobe Garamond Pro",Garamond,Georgia,serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --step-1:1.25rem; --step-2:1.75rem;
+  --gutter:clamp(16px,4vw,56px); --max:1320px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--paper:#0E1412;--paper-2:#151D1A;--ink:#E4EAE5;--muted:#93A19A;--celadon:#9CC4B1;--glaze:#2F4A3F;--line:rgba(228,234,229,.14);color-scheme:dark}
+}
+:root[data-theme="dark"]{--paper:#0E1412;--paper-2:#151D1A;--ink:#E4EAE5;--muted:#93A19A;--celadon:#9CC4B1;--glaze:#2F4A3F;--line:rgba(228,234,229,.14);color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--celadon);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(var(--gutter), env(safe-area-inset-left,0px));padding-right:max(var(--gutter), env(safe-area-inset-right,0px))}
+.small{font-weight:500;font-size:.85rem;color:var(--muted)}
+
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
+.mark{font-family:var(--display);font-size:1.15rem;text-decoration:none;white-space:nowrap}
+.mark i{color:var(--celadon)}
+.nav ul{display:flex;gap:clamp(14px,3vw,32px);list-style:none;margin:0;padding:0}
+.nav a{font-size:.9rem;text-decoration:none;color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.nav .mark{color:var(--ink)}
+
+/* Title block */
+.head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-block:clamp(40px,7vw,96px) clamp(28px,4vw,48px)}
+.crumbs{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.crumbs a{text-decoration:none}
+.crumbs a:hover{color:var(--ink)}
+h1{grid-column:1/span 9;margin:12px 0 0;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,6rem);line-height:1;letter-spacing:-.015em;text-wrap:balance}
+.role{grid-column:1/span 9;margin:0;font-family:var(--display);font-style:italic;font-size:var(--step-2);color:var(--celadon)}
+.facts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 40px;margin:12px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+.facts div{display:grid;gap:2px}
+.facts dt{font-size:.78rem;color:var(--muted)}
+.facts dd{margin:0;font-weight:500;font-size:.95rem}
+
+/* Lead image (projects without sections) */
+.lead{margin:0;background:var(--paper-2);overflow:hidden;cursor:zoom-in}
+.lead img{width:100%;max-height:82vh;object-fit:contain;margin:0 auto}
+
+/* Story blocks: text in a narrow column, that section's photos in the wide one; sides alternate.
+   3+ photos: the text stays pinned while the photos scroll past in two columns. */
+.story{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:28px 40px;padding-block:clamp(44px,6vw,96px);border-top:1px solid var(--line);align-items:start}
+.story:first-of-type{border-top:0}
+.copy{grid-column:1/span 5;display:grid;gap:14px;min-width:0}
+.pics{grid-column:7/-1;min-width:0}
+.story.flip .copy{grid-column:8/-1;grid-row:1}
+.story.flip .pics{grid-column:1/span 6;grid-row:1}
+.story.many .copy{grid-column:1/span 4}
+.story.many .pics{grid-column:5/-1}
+.pics-wrap{grid-column:5/-1;display:grid;gap:14px;min-width:0}
+.pics-wrap{grid-template-columns:minmax(0,1fr)}
+@media (min-width:901px){
+  .story:not(.many) .pics-wrap{grid-column:7/-1}
+  .story.flip:not(.many) .pics-wrap{grid-column:1/span 6;grid-row:1}
+}
+.story.scroll .scroll-col{grid-column:1/span 7;grid-row:1;display:grid;gap:18px;min-width:0}
+.story.scroll .copy{grid-column:9/-1;grid-row:1;position:sticky;top:calc(96px + env(safe-area-inset-top,0px));align-self:start}
+.story.scroll .copy .big{font-size:clamp(1.3rem,1.9vw,1.7rem)}
+@media (max-width:900px){
+  .story.scroll .copy,.story.scroll .scroll-col{grid-column:1/-1;grid-row:auto}
+  .story.scroll .copy{position:static}
+}
+.vid{margin:0}
+.vid video{display:block;width:100%;height:auto;background:#000;border-radius:2px}
+.story .pics-wrap .pics,.story .pics-wrap .pics-more{grid-column:1/-1;grid-row:auto}
+.show-all{justify-self:start;align-self:start;margin-top:6px;font:500 .95rem var(--body);padding:13px 24px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);cursor:pointer;transition:background .25s,border-color .25s}
+.show-all:hover{background:var(--celadon);border-color:var(--celadon)}
+.story.wide .copy{grid-column:1/span 7;grid-row:1}
+.story.wide .pics{grid-column:1/span 10;grid-row:2}
+.story.wide .pic img{max-height:56vh}
+.story.many .copy{position:sticky;top:calc(84px + env(safe-area-inset-top,0px))}
+.story.solo .copy{grid-column:1/-1;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:40px}
+.story.solo .copy > *{grid-column:1/span 4}
+.story.solo .copy > p,.story.solo .copy > .tags{grid-column:5/-1}
+.story.solo .copy > p{grid-row:1/span 4}
+.kicker{font-weight:500;font-size:.82rem;color:var(--celadon)}
+.copy h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,2.8vw,2.4rem);line-height:1.12;text-wrap:balance}
+.copy p{margin:0;color:var(--muted);font-size:clamp(1.02rem,1.3vw,1.18rem);line-height:1.65;max-width:62ch;text-wrap:pretty}
+.copy .big{font-family:var(--display);color:var(--ink);font-size:clamp(1.45rem,2.4vw,2rem);line-height:1.4;max-width:44ch}
+.copy .tags{margin-top:4px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.tags li{font-size:.8rem;padding:4px 11px;border:1px solid var(--line);border-radius:999px}
+.count{font-size:.8rem;color:var(--muted)}
+
+.paper{margin-top:8px;border-top:1px solid var(--line);padding-top:14px}
+.paper summary{cursor:pointer;font-weight:500;color:var(--celadon);list-style:none;display:inline-flex;gap:8px;align-items:center}
+.paper summary::-webkit-details-marker{display:none}
+.paper summary::after{content:"+";font-size:1.1rem;transition:transform .3s}
+.paper[open] summary::after{transform:rotate(45deg)}
+.paper h3{margin:22px 0 4px;font-family:var(--display);font-weight:400;font-size:var(--step-1);line-height:1.3}
+.paper p{margin:14px 0 0;color:var(--ink);font-family:var(--display);font-size:1.12rem;line-height:1.7;max-width:64ch}
+.story.solo .copy > .paper{grid-column:5/-1}
+.pic{display:block;width:100%;margin:0;padding:0;border:0;background:var(--paper-2);cursor:zoom-in;overflow:hidden}
+.pic img{width:100%;height:auto;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.pic:hover img{transform:scale(1.02)}
+.pics.one .pic{width:auto;max-width:100%;background:none}
+.pics.one .pic img{width:auto;max-width:100%;max-height:66vh}
+.pics.two{display:grid;gap:14px}
+.pics.two.side{grid-template-columns:1fr 1fr;align-items:start}
+.pics.many{display:grid;gap:14px}
+.pics.row{display:flex;gap:14px;align-items:flex-start}
+.pics.row>div{min-width:0}
+.pics.row img{display:block;width:100%;height:auto}
+.pics.many .cols{display:grid;grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:14px;align-items:start}
+.pics.many .col{display:grid;gap:14px;align-content:start}
+@media (max-width:700px){.pics.many .cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Next / previous */
+.to-top-wrap{display:flex;justify-content:center;padding:40px 0 8px;border-top:1px solid var(--line)}
+.to-top{font:500 .95rem var(--body);padding:13px 26px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);cursor:pointer;transition:opacity .25s}
+.to-top:hover{opacity:.8}
+.pager{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.pager a{display:grid;gap:6px;padding:32px 0;text-decoration:none;transition:background .25s}
+.pager a:hover{background:var(--paper-2)}
+.pager a.next{text-align:right;border-left:1px solid var(--line);padding-left:24px}
+.pager a.prev{padding-right:24px}
+.pager strong{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.15}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:28px;border-top:1px solid var(--line)}
+.foot a{text-decoration:none}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:40;background:color-mix(in srgb,#080c0a 92%,transparent);display:grid;place-items:center;
+  padding:max(48px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(48px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb img{max-width:min(1400px,100%);max-height:100%;object-fit:contain}
+.lb button{position:absolute;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;width:44px;height:44px;font:500 1.1rem var(--body);cursor:pointer}
+.lb .x{top:max(12px,env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px))}
+.lb .p{left:max(12px,env(safe-area-inset-left,0px));top:50%}
+.lb .n{right:max(12px,env(safe-area-inset-right,0px));top:50%}
+.lb .c{position:absolute;bottom:max(14px,env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;color:rgba(255,255,255,.7);font-size:.85rem}
+
+.empty{padding-block:120px;text-align:center}
+.empty h1{grid-column:auto;margin:0 0 16px}
+
+@keyframes rise{from{transform:translateY(16px);opacity:.001}to{transform:none;opacity:1}}
+.head > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.head > :nth-child(2){animation-delay:.05s}.head > :nth-child(3){animation-delay:.1s}.head > :nth-child(4){animation-delay:.15s}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+@media (max-width:900px){
+  h1,.role{grid-column:1/-1}
+  .pics-wrap{grid-column:1/-1}
+  .copy,.pics,.story.flip .copy,.story.flip .pics,.story.wide .copy,.story.wide .pics,.story.many .copy,.story.many .pics{grid-column:1/-1;grid-row:auto}
+  .story.many .copy{position:static}
+  .story.solo .copy > *,.story.solo .copy > p,.story.solo .copy > .tags,.story.solo .copy > .paper{grid-column:1/-1;grid-row:auto}
+}
+@media (max-width:560px){
+  .nav li.hide-s{display:none}
+  .pager{grid-template-columns:1fr}
+  .pager a.next{border-left:0;border-top:1px solid var(--line);padding-left:0;text-align:left}
+}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="mark" href="index.html">Thanida <i>B.</i></a>
+    <ul>
+      <li><a href="portfolio.html#work">Work</a></li>
+      <li><a href="portfolio.html#archive">Archive</a></li>
+      <li class="hide-s"><a href="portfolio.html#about">About</a></li>
+      <li><a href="portfolio.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<main id="page" class="wrap"></main>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+  <img id="lb-img" alt="">
+  <button class="x" type="button" id="lb-x" aria-label="Close">✕</button>
+  <button class="p" type="button" id="lb-p" aria-label="Previous image">←</button>
+  <button class="n" type="button" id="lb-n" aria-label="Next image">→</button>
+  <div class="c" id="lb-c"></div>
+</div>
+
+<script src="projects.js"></script>
+<script>
+(function(){
+  var P = window.PROJECTS || [];
+  var esc = function(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var tags = function(t){return t && t.length ? '<ul class="tags">'+t.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>' : ''};
+  var place = function(meta){return meta ? meta.split('·')[0].trim() : ''};
+  var page = document.getElementById('page');
+  var imgs = [];
+
+  function render(){
+    var id = new URLSearchParams(location.search).get('p') || location.hash.replace('#','').split('&')[0];
+    var i = P.findIndex(function(p){return p.id===id});
+    if(i<0){
+      page.innerHTML='<div class="empty"><h1>Project not found</h1><p class="small">It may have moved. <a href="portfolio.html#archive">Browse the archive</a>.</p></div>';
+      return;
+    }
+    var p = P[i], prev = P[(i-1+P.length)%P.length], next = P[(i+1)%P.length];
+    document.title = p.title + ' · Thanida Boonkangvan';
+    imgs = p.images || [];
+    var h = '';
+    h += '<header class="head">';
+    h +=   '<div class="crumbs small"><a href="portfolio.html#archive">Archive</a><span>/</span><span>'+esc(p.category)+'</span></div>';
+    h +=   '<h1>'+esc(p.title)+'</h1>';
+    if(p.role) h += '<p class="role">'+esc(p.role)+'</p>';
+    h +=   '<dl class="facts">';
+    h +=     '<div><dt>Category</dt><dd>'+esc(p.category)+'</dd></div>';
+    if(p.year) h += '<div><dt>Year</dt><dd>'+esc(p.year)+'</dd></div>';
+    if(place(p.meta)) h += '<div><dt>Location</dt><dd>'+esc(place(p.meta))+'</dd></div>';
+    h +=   '</dl>';
+    h += '</header>';
+    var eager = document.documentElement.classList.contains('capture') ? 'eager' : 'lazy';
+    function pic(i, cls){
+      var im = imgs[i]; if(!im) return '';
+      return '<button type="button" class="pic'+(cls?' '+cls:'')+'" data-i="'+i+'" aria-label="Open image '+(i+1)+' of '+imgs.length+'"><img loading="'+eager+'" src="'+im[0]+'" width="'+im[1]+'" height="'+im[2]+'" alt="'+esc(p.title)+', image '+(i+1)+'"></button>';
+    }
+    function pics(list){
+      if(!list.length) return '';
+      if(list.length===1) return '<div class="pics one">'+pic(list[0])+'</div>';
+      if(list.length===2){
+        var portrait = list.every(function(i){return imgs[i][1] < imgs[i][2]*1.6});
+        return '<div class="pics two'+(portrait?' side':'')+'">'+list.map(function(i){return pic(i)}).join('')+'</div>';
+      }
+      // first landscape image runs full width, the rest fill two columns, each image going to the shorter column
+      var top = '', rest = list.slice();
+      if(imgs[rest[0]][1] > imgs[rest[0]][2]*1.15) top = pic(rest.shift());
+      // very tall banners and screens sit in more, narrower columns so the section doesn't run on forever
+      var tall = rest.reduce(function(a,i){return a + imgs[i][2]/imgs[i][1]},0) / rest.length;
+      var n = tall > 2.5 ? 5 : tall > 1.6 ? 3 : 2, cols = [], hgt = [];
+      // exactly three portrait images: one row of three, sized so they share one height
+      if(!top && rest.length === 3 && rest.every(function(i){return imgs[i][2] > imgs[i][1]}))
+        return '<div class="pics row">'+rest.map(function(i){return '<div style="flex:'+(imgs[i][1]/imgs[i][2]).toFixed(4)+' 1 0">'+pic(i)+'</div>'}).join('')+'</div>';
+      for(var c=0;c<n;c++){cols.push([]);hgt.push(0)}
+      rest.forEach(function(i){ var c = hgt.indexOf(Math.min.apply(null,hgt)); cols[c].push(pic(i)); hgt[c] += imgs[i][2]/imgs[i][1]; });
+      return '<div class="pics many">'+top+'<div class="cols" style="--n:'+n+'">'+cols.map(function(c){return '<div class="col">'+c.join('')+'</div>'}).join('')+'</div></div>';
+    }
+    var flip = false;
+    function story(o){
+      var list = o.imgs || [], vids = o.videos || [], media = list.length + vids.length;
+      var wide = !vids.length && list.length === 1 && imgs[list[0]][1] > imgs[list[0]][2]*1.9;
+      var cls = 'story' + (media ? '' : ' solo') + (list.length >= 3 ? ' many' : '') + (wide ? ' wide' : (media && flip ? ' flip' : ''));
+      if(media && !wide) flip = !flip;
+      var c = '';
+      if(o.kicker) c += '<span class="kicker">'+esc(o.kicker)+'</span>';
+      if(o.title) c += '<h2>'+esc(o.title)+'</h2>';
+      if(o.meta) c += '<span class="small">'+esc(o.meta)+'</span>';
+      if(o.text) c += '<p'+(o.big?' class="big"':'')+'>'+esc(o.text)+'</p>';
+      c += tags(o.tags);
+      if(list.length > 2) c += '<span class="count">'+list.length+' photos</span>';
+      if(o.paper) c += '<details class="paper"><summary>Read the full paper</summary><h3>'+esc(o.paper.title)+'</h3><span class="small">'+esc(o.paper.byline)+'</span>'+o.paper.paras.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'</details>';
+      var LIMIT = 8, body;
+      // long-scroll layout: every photo in one column, the text pinned beside it
+      if(o.scroll) return '<section class="story scroll"><div class="copy">'+c+'</div><div class="scroll-col">'+list.map(function(i){return pic(i)}).join('')+'</div></section>';
+      if(list.length > LIMIT + 2){
+        body = '<div class="pics-wrap">'+pics(list.slice(0, LIMIT))+'<div class="pics-more" hidden>'+pics(list.slice(LIMIT))+'</div><button type="button" class="show-all" data-more="Show all '+list.length+' photos">Show all '+list.length+' photos</button></div>';
+      } else body = pics(list);
+      // videos ([src, poster, width, height]) sit above the section's photos; nothing loads until play is pressed
+      var vh = vids.map(function(v){return '<figure class="vid"><video controls playsinline preload="none" poster="'+v[1]+'" width="'+v[2]+'" height="'+v[3]+'"><source src="'+v[0]+'" type="video/mp4"></video></figure>'}).join('');
+      if(vh) body = body.indexOf('<div class="pics-wrap">') === 0 ? body.replace('<div class="pics-wrap">', '<div class="pics-wrap">'+vh) : '<div class="pics-wrap">'+vh+body+'</div>';
+      return '<section class="'+cls+'"><div class="copy">'+c+'</div>'+body+'</section>';
+    }
+    var intro = (p.intro_imgs || []).slice();
+    var hasSections = p.sections && p.sections.length;
+    if(p.layout === 'scroll'){
+      h += story({kicker:'Overview', text:p.summary, big:true, tags:p.tags, imgs:intro, scroll:true});
+      intro = []; p = Object.assign({}, p, {summary:''});
+    }
+    if(!hasSections && intro.length){
+      var li = intro.shift();
+      h += '<figure class="lead" data-i="'+li+'"><img src="'+imgs[li][0]+'" width="'+imgs[li][1]+'" height="'+imgs[li][2]+'" alt="'+esc(p.title)+', image '+(li+1)+'"></figure>';
+    }
+    if(p.summary || intro.length){
+      h += story({kicker:'Overview', text:p.summary, big:true, tags:p.tags, imgs:intro});
+    }
+    (p.sections || []).forEach(function(sec){ h += story(sec); });
+    h += '<nav class="pager" aria-label="More projects"><a class="prev" href="project.html#'+prev.id+'"><span class="small">← Previous</span><strong>'+esc(prev.title)+'</strong></a><a class="next" href="project.html#'+next.id+'"><span class="small">Next →</span><strong>'+esc(next.title)+'</strong></a></nav>';
+    h += '<div class="to-top-wrap"><button class="to-top" type="button">Back to top ↑</button></div>';
+    h += '<div class="foot small"><a href="portfolio.html#archive">← Back to the archive</a><span>© 2026 Thanida Boonkangvan</span></div>';
+    page.innerHTML = h;
+    scrollTo(0,0);
+  }
+
+  // Lightbox
+  var lb=document.getElementById('lb'), lbi=document.getElementById('lb-img'), lbc=document.getElementById('lb-c'), cur=0;
+  function show(i){cur=(i+imgs.length)%imgs.length; lbi.src=imgs[cur][0]; lbi.alt='Image '+(cur+1); lbc.textContent=(cur+1)+' / '+imgs.length; lb.hidden=false; document.body.style.overflow='hidden'}
+  function hide(){lb.hidden=true; document.body.style.overflow=''}
+  page.addEventListener('click',function(e){if(e.target.closest('.to-top')){window.scrollTo({top:0,behavior:'smooth'});return;} var b=e.target.closest('.show-all'); if(b){var m=b.previousElementSibling; m.hidden=!m.hidden; b.textContent=m.hidden?b.dataset.more:'Show fewer ↑'; if(m.hidden) b.closest('section').scrollIntoView({block:'start'}); return;} var t=e.target.closest('[data-i]'); if(t) show(+t.dataset.i)});
+  document.getElementById('lb-x').onclick=hide;
+  document.getElementById('lb-p').onclick=function(){show(cur-1)};
+  document.getElementById('lb-n').onclick=function(){show(cur+1)};
+  lb.addEventListener('click',function(e){if(e.target===lb)hide()});
+  addEventListener('keydown',function(e){if(lb.hidden)return; if(e.key==='Escape')hide(); if(e.key==='ArrowLeft')show(cur-1); if(e.key==='ArrowRight')show(cur+1)});
+
+  addEventListener('hashchange',render);
+  render();
+})();
+</script>
+</body>
+</html>
