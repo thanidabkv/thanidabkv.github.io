@@ -513,7 +513,7 @@ window.PROJECTS = [
   "id": "atsa",
   "title": "Association of Thai Students in America",
   "category": "Brand Work",
-  "summary": "Served as Graphic Designer for the Association of Thai Students in America, creating visual content across community programming, professional development, and college guidance platforms. Designed cohesive graphics and social media content to support Thai students across the U.S. in their academic and professional journeys.",
+  "summary": "Director of Marketing and Communications for the Association of Thai Students in America since August 2026, after starting as Graphic Designer in November 2025. Designed content across three platforms covering community programming, admissions guidance and career development, plus 10+ large-format booth backdrops for the ATSA Expo at CentralWorld. Now oversees marketing and coordinates with the External Relations, Tech and Regional Vice President teams.",
   "tags": [
    "Graphic Design",
    "Social Media",
@@ -1204,13 +1204,14 @@ window.PROJECTS = [
    0,
    1,
    2
-  ]
+  ],
+  "role": "Director of Marketing & Communications"
  },
  {
   "id": "khanom-jeen-meung-khon",
   "title": "Khanom Jeen Meung Khon",
   "category": "Brand Work",
-  "role": "Rebrand & Label Design",
+  "role": "Brand & Operations Director",
   "summary": "Repositioning my family's 50-year-old restaurant by overhauling its visual identity and bilingual storytelling. A new digital content strategy grew views by 50% (12,700+ in 60 days), and the brand now extends into retail with chili paste packaging designed for department store distribution.",
   "tags": [
    "Rebrand",
@@ -1816,7 +1817,7 @@ window.PROJECTS = [
    "Social Media",
    "Product Design"
   ],
-  "meta": "Bangkok, Thailand · 2024",
+  "meta": "Bangkok, Thailand · Jan–Aug 2024",
   "year": "2024",
   "sections": [
    {
@@ -1929,7 +1930,8 @@ window.PROJECTS = [
   ],
   "intro_imgs": [
    0
-  ]
+  ],
+  "role": "Founder & Brand Designer"
  },
  {
   "id": "asb-cultural-events",
@@ -2128,7 +2130,8 @@ window.PROJECTS = [
   "intro_imgs": [
    0,
    1
-  ]
+  ],
+  "role": "PR Coordinator"
  },
  {
   "id": "first-global-robotics",
@@ -3713,8 +3716,8 @@ window.PROJECTS = [
    "Nonprofit Collaboration",
    "Cultural Storytelling"
   ],
-  "meta": "Bangkok, Thailand · 2022–2023",
-  "year": "2022–2023",
+  "meta": "Bangkok, Thailand · 2023–2024",
+  "year": "2023–2024",
   "sections": [
    {
     "title": "Visiting the Mirror Foundation",
