@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Project · Thanida Boonkangvan</title>
+<meta name="description" content="Project case study from the portfolio of Thanida Boonkangvan, brand strategist and designer studying public relations at Syracuse University.">
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" href="images/brand/favicon.png">
+<link rel="apple-touch-icon" href="images/brand/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,700&family=Hanken+Grotesk:wght@400;500;600&display=swap">
@@ -37,7 +40,11 @@ a{color:inherit}
 
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
-.mark{font-family:var(--display);font-size:1.15rem;text-decoration:none;white-space:nowrap}
+.mark{font-family:var(--display);font-size:1.15rem;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+/* tb monogram from the Project 01 logotype; a mask, so it takes the text color in both themes */
+@media (max-width:420px){.mark>span:not(.tb){display:none}}
+.tb{display:inline-block;height:1.9em;aspect-ratio:348/471;background:currentColor;-webkit-mask:url(images/brand/tb-mark-ink.png) center/contain no-repeat;mask:url(images/brand/tb-mark-ink.png) center/contain no-repeat;flex:none}
+
 .mark i{color:var(--celadon)}
 .nav ul{display:flex;gap:clamp(14px,3vw,32px);list-style:none;margin:0;padding:0}
 .nav a{font-size:.9rem;text-decoration:none;color:var(--muted);transition:color .2s}
@@ -176,7 +183,7 @@ h1{grid-column:1/span 9;margin:12px 0 0;font-family:var(--display);font-weight:4
 <body>
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="mark" href="index.html">Thanida <i>B.</i></a>
+    <a class="mark" href="index.html" aria-label="Thanida Boonkangvan, home"><span class="tb" aria-hidden="true"></span><span>Thanida <i>B.</i></span></a>
     <ul>
       <li><a href="portfolio.html#work">Work</a></li>
       <li><a href="portfolio.html#archive">Archive</a></li>

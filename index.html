@@ -3,8 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Thanida Boonkangvan</title>
+<title>Thanida Boonkangvan · Brand Strategist & Designer</title>
+<meta name="description" content="Portfolio of Thanida Boonkangvan, a Syracuse University Newhouse public relations student and brand strategist and designer from Thailand: brand identity, PR, content strategy, spatial design and film photography.">
+<meta property="og:title" content="Thanida Boonkangvan · Brand Strategist & Designer">
+<meta property="og:description" content="Design, storytelling and strategy for brands that connect with people.">
+<meta property="og:image" content="https://thanidabkv.github.io/images/film/01.jpg">
+<meta property="og:url" content="https://thanidabkv.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://thanidabkv.github.io/">
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" href="images/brand/favicon.png">
+<link rel="apple-touch-icon" href="images/brand/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400;1,700&family=Hanken+Grotesk:wght@400;500&display=swap">
@@ -33,6 +42,12 @@ a{color:inherit}
   padding-block:clamp(20px,3vw,36px)}
 
 /* Ambient glaze: a soft light that drifts toward the cursor */
+/* Hero photo: a frame from the film archive, dimmed so the name stays the entry point */
+.photo{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;opacity:.42;transform:scale(1.08);animation:drift 24s ease-out forwards}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 8%,color-mix(in srgb,var(--night) 55%,transparent) 55%,color-mix(in srgb,var(--night) 30%,transparent))}
+@keyframes drift{to{transform:scale(1)}}
+@media (max-width:560px){.photo img{opacity:.32}.photo::after{background:color-mix(in srgb,var(--night) 45%,transparent)}}
 .glow{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .glow::before{content:"";position:absolute;width:70vmax;height:70vmax;left:var(--gx,60%);top:var(--gy,55%);transform:translate(-50%,-50%);
   background:radial-gradient(circle, color-mix(in srgb,var(--celadon) 38%,transparent) 0%, transparent 62%);
@@ -45,12 +60,18 @@ a{color:inherit}
 .top,.bottom{position:relative;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .mono{font-family:var(--mono);font-weight:500;font-size:.88rem;letter-spacing:.02em;color:var(--mist)}
 .links{display:flex;gap:20px}
+/* tb monogram from the Project 01 logotype; a mask, so it takes the text color in both themes */
+.tb{display:inline-block;height:1.9em;aspect-ratio:348/471;background:currentColor;-webkit-mask:url(images/brand/tb-mark-ink.png) center/contain no-repeat;mask:url(images/brand/tb-mark-ink.png) center/contain no-repeat;flex:none}
+.brand{display:inline-flex;align-items:center;gap:14px;color:var(--paper)}
+.brand .tb{height:46px}
 .links a{text-decoration:none;transition:color .2s}
 .links a:hover{color:var(--paper)}
 
 .center{position:relative;align-self:center;display:grid;gap:clamp(20px,3vw,32px);max-width:1200px}
 .name{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(3rem,min(12.5vw,19vh),11rem);line-height:.9;letter-spacing:-.015em}
 .name .l1,.name .l2{display:block;overflow:hidden;padding-bottom:.08em}
+/* brand lockup from Project 01: Georgia roman for Thanida, Garamond italic for Boonkangvan */
+.name .l1{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.03em}
 /* room for the italic g's descender, without pushing the lines apart */
 .name .l2{padding-bottom:.28em;margin-bottom:-.2em}
 .name .l2{font-style:italic;font-weight:400;padding-left:clamp(0px,8vw,140px);color:var(--glaze)}
@@ -83,6 +104,7 @@ body.leaving .ch{animation:lift .6s cubic-bezier(.6,0,.3,1) forwards;animation-d
 body.leaving .desc,body.leaving .enter,body.leaving .top,body.leaving .bottom{transition:opacity .35s;opacity:0!important}
 
 @media (prefers-reduced-motion: reduce){
+  .photo img{animation:none;transform:none}
   .ch{transform:none;animation:none}
   .desc,.enter{opacity:1;animation:none}
   .grain{animation:none}
@@ -96,11 +118,12 @@ body.leaving .desc,body.leaving .enter,body.leaving .top,body.leaving .bottom{tr
 </head>
 <body>
 <main class="stage">
+  <div class="photo" aria-hidden="true"><img src="images/film/01.jpg" alt=""></div>
   <div class="glow" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
   <div class="top">
-    <span class="mono">Portfolio · 2026</span>
+    <span class="brand"><span class="tb" role="img" aria-label="tb monogram"></span><span class="mono">Portfolio · 2026</span></span>
     <span class="mono">Syracuse, NY — Bangkok, TH</span>
   </div>
 

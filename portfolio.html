@@ -3,8 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Thanida Boonkangvan</title>
+<title>Work, Archive & About · Thanida Boonkangvan</title>
+<meta name="description" content="Selected work, archive, resume and contact for Thanida Boonkangvan: brand identity, bilingual PR, content strategy, spatial design and film photography from Bangkok to Syracuse.">
+<meta property="og:title" content="Thanida Boonkangvan · Brand Strategist & Designer">
+<meta property="og:description" content="Design, storytelling and strategy for brands that connect with people.">
+<meta property="og:image" content="https://thanidabkv.github.io/images/film/01.jpg">
+<link rel="canonical" href="https://thanidabkv.github.io/portfolio.html">
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/png" href="images/brand/favicon.png">
+<link rel="apple-touch-icon" href="images/brand/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,700&family=Hanken+Grotesk:wght@400;500;600&display=swap">
@@ -58,7 +65,11 @@ a{color:inherit}
 /* Nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
-.mark{font-family:var(--display);font-size:1.15rem;text-decoration:none;white-space:nowrap}
+.mark{font-family:var(--display);font-size:1.15rem;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:10px}
+/* tb monogram from the Project 01 logotype; a mask, so it takes the text color in both themes */
+@media (max-width:420px){.mark>span:not(.tb){display:none}}
+.tb{display:inline-block;height:1.9em;aspect-ratio:348/471;background:currentColor;-webkit-mask:url(images/brand/tb-mark-ink.png) center/contain no-repeat;mask:url(images/brand/tb-mark-ink.png) center/contain no-repeat;flex:none}
+
 .mark i{color:var(--celadon)}
 .nav ul{display:flex;gap:clamp(14px,3vw,32px);list-style:none;margin:0;padding:0}
 .nav a.l{font-size:.9rem;text-decoration:none;color:var(--muted);transition:color .2s}
@@ -68,7 +79,7 @@ a{color:inherit}
 .hero .wrap{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding-block:clamp(48px,8vw,104px) clamp(48px,7vw,88px)}
 .hero-top{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .name{grid-column:1/-1;margin:clamp(12px,3vw,32px) 0 0;font-family:var(--display);font-weight:400;font-size:var(--step-hero);line-height:.92;letter-spacing:-.015em;padding-bottom:.22em}
-.name span{display:block}
+.name span{display:block;font-family:Georgia,"Times New Roman",serif;letter-spacing:-.03em}
 .name em{display:block;font-style:italic;font-weight:400;padding-left:clamp(0px,9vw,150px);color:var(--celadon)}
 .hero-copy{grid-column:1/span 5;align-self:end;display:grid;gap:22px}
 .thesis{font-family:var(--display);font-style:italic;font-size:var(--step-2);line-height:1.25;margin:0;text-wrap:balance}
@@ -169,7 +180,7 @@ section{border-top:1px solid var(--line)}
 .exp .org{color:var(--celadon);font-size:.92rem;margin:4px 0 8px}
 .exp p{margin:0;max-width:68ch}
 .exp p:not(.org){color:var(--muted)}
-.meta-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,56px);margin-top:clamp(40px,6vw,72px)}
+.meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,56px);margin-top:clamp(40px,6vw,72px)}
 .meta-grid > div{display:grid;gap:10px;align-content:start;min-width:0}
 .meta-grid p{margin:0;color:var(--muted)}
 .meta-grid b{color:var(--ink);font-weight:500}
@@ -292,6 +303,8 @@ html.arriving .name span,html.arriving .name em,html.arriving .hero-fig{animatio
 .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;border-radius:2px}
 .about-grid .pull{grid-column:6/-1;align-self:end}
 .about-grid .facts{grid-column:6/-1;align-self:start}
+.purpose{grid-column:6/-1;margin:0;display:grid;gap:8px;max-width:58ch}
+.purpose p{margin:0;font-family:var(--display);font-size:var(--step-1);line-height:1.4}
 .love-pic{margin:0 0 10px;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2);border-radius:2px}
 .love-pic img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .loves article:hover .love-pic img{transform:scale(1.04)}
@@ -301,7 +314,7 @@ html.arriving .name span,html.arriving .name em,html.arriving .hero-fig{animatio
 .fun p{margin:0;max-width:90ch}
 .fun-pic{margin:0;overflow:hidden;border-radius:2px}
 .fun-pic img{width:100%}
-@media (max-width:900px){.portrait{grid-column:1/-1;grid-row:auto;max-width:360px}.about-grid .pull,.about-grid .facts{grid-column:1/-1}}
+@media (max-width:900px){.portrait{grid-column:1/-1;grid-row:auto;max-width:360px}.about-grid .pull,.about-grid .facts,.purpose{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -310,7 +323,7 @@ html.arriving .name span,html.arriving .name em,html.arriving .hero-fig{animatio
 
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="mark" href="index.html">Thanida <i>B.</i></a>
+    <a class="mark" href="index.html" aria-label="Thanida Boonkangvan, home"><span class="tb" aria-hidden="true"></span><span>Thanida <i>B.</i></span></a>
     <ul>
       <li><a class="l tab" href="#work" data-tab="work">Work</a></li>
       <li><a class="l tab" href="#archive" data-tab="archive">Archive</a></li>
@@ -503,6 +516,7 @@ html.arriving .name span,html.arriving .name em,html.arriving .hero-fig{animatio
     <div class="about-grid">
       <figure class="portrait"><img src="images/about/portrait.jpg" alt="Thanida Boonkangvan" loading="lazy"><figcaption class="mono">Thanida Boonkangvan</figcaption></figure>
       <p class="pull">I don't just think about what looks good. <i>It's about what feels right.</i></p>
+      <div class="purpose"><span class="mono">Purpose statement</span><p>I build brands that people feel before they read: identities, campaigns and stories grounded in culture and strategy, designed to connect brands with the people they serve, across Thai and American audiences.</p></div>
       <dl class="facts">
         <div><dt>Libraries carrying my book</dt><dd>300+</dd></div>
         <div><dt>Fragrance Club first-week views vs. baseline</dt><dd>65×</dd></div>
@@ -559,7 +573,8 @@ html.arriving .name span,html.arriving .name em,html.arriving .hero-fig{animatio
     <div class="meta-grid">
       <div><span class="mono">Education</span><p><b>Syracuse University, S.I. Newhouse School of Public Communications</b><br>B.S. Public Relations, Minor in Architecture · May 2028<br>GPA 3.7 · Dean's List, all semesters</p></div>
       <div><span class="mono">Tools</span><p>Photoshop, Illustrator, InDesign, Canva, AutoCAD, SketchUp, analog &amp; digital photography, Instagram, TikTok, YouTube, KOL &amp; influencer marketing, Microsoft 365, Claude, ChatGPT, Gemini</p></div>
-      <div><span class="mono">Languages</span><p>Thai (fluent), English, Korean (elementary), Chinese (elementary)</p></div>
+      <div><span class="mono">Activities</span><p><b>Author &amp; Illustrator</b>, <i>The Steps of Mindfulness</i> children's book · Bangkok · 2023–2024<br><b>Team Leader &amp; Media Director</b>, FIRST Global Robotics Competition · Geneva · May–Dec 2022<br>Grew personal beauty content to 191K+ views and 89K viewers in 30 days, 81% non-followers, via Reels</p></div>
+      <div><span class="mono">Languages</span><p>Thai (fluent), English (fluent), Korean (elementary), Chinese (elementary)</p></div>
     </div>
   </div>
 </section>
@@ -571,7 +586,7 @@ html.arriving .name span,html.arriving .name em,html.arriving .hero-fig{animatio
       <p>If you're building something that needs to feel like something, let's talk.</p>
     </div>
     <div class="c-row">
-      <a class="btn solid" href="resume.pdf">View my resume ↗</a>
+      <a class="btn solid" href="resume.pdf" download="Thanida-Boonkangvan-Resume.pdf">Download my resume ↓</a>
       <a class="btn" href="https://www.linkedin.com/in/thanidabkv">LinkedIn ↗</a>
     </div>
     <div class="c-row">
