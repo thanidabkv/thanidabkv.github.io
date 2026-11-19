@@ -108,6 +108,9 @@ h1{grid-column:1/span 9;margin:12px 0 0;font-family:var(--display);font-weight:4
 .copy p{margin:0;color:var(--muted);font-size:clamp(1.02rem,1.3vw,1.18rem);line-height:1.65;max-width:62ch;text-wrap:pretty}
 .copy .big{font-family:var(--display);color:var(--ink);font-size:clamp(1.45rem,2.4vw,2rem);line-height:1.4;max-width:44ch}
 .copy .tags{margin-top:4px}
+.ext{justify-self:start;font:500 .9rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--celadon)}
+.ext:hover{color:var(--celadon)}
+.story.solo .copy > .ext{grid-column:5/-1}
 .tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
 .tags li{font-size:.8rem;padding:4px 11px;border:1px solid var(--line);border-radius:999px}
 .count{font-size:.8rem;color:var(--muted)}
@@ -269,6 +272,7 @@ h1{grid-column:1/span 9;margin:12px 0 0;font-family:var(--display);font-weight:4
       if(o.meta) c += '<span class="small">'+esc(o.meta)+'</span>';
       if(o.text) c += '<p'+(o.big?' class="big"':'')+'>'+esc(o.text)+'</p>';
       c += tags(o.tags);
+      if(o.link) c += '<a class="ext" href="'+esc(o.link.url)+'" target="_blank" rel="noopener">'+esc(o.link.label)+' ↗</a>';
       if(list.length > 2) c += '<span class="count">'+list.length+' photos</span>';
       if(o.paper) c += '<details class="paper"><summary>Read the full paper</summary><h3>'+esc(o.paper.title)+'</h3><span class="small">'+esc(o.paper.byline)+'</span>'+o.paper.paras.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'</details>';
       var LIMIT = 8, body;
@@ -285,7 +289,7 @@ h1{grid-column:1/span 9;margin:12px 0 0;font-family:var(--display);font-weight:4
     var intro = (p.intro_imgs || []).slice();
     var hasSections = p.sections && p.sections.length;
     if(p.layout === 'scroll'){
-      h += story({kicker:'Overview', text:p.summary, big:true, tags:p.tags, imgs:intro, scroll:true});
+      h += story({kicker:'Overview', text:p.summary, big:true, tags:p.tags, imgs:intro, link:p.link, scroll:true});
       intro = []; p = Object.assign({}, p, {summary:''});
     }
     if(!hasSections && intro.length){
@@ -293,7 +297,7 @@ h1{grid-column:1/span 9;margin:12px 0 0;font-family:var(--display);font-weight:4
       h += '<figure class="lead" data-i="'+li+'"><img src="'+imgs[li][0]+'" width="'+imgs[li][1]+'" height="'+imgs[li][2]+'" alt="'+esc(p.title)+', image '+(li+1)+'"></figure>';
     }
     if(p.summary || intro.length){
-      h += story({kicker:'Overview', text:p.summary, big:true, tags:p.tags, imgs:intro});
+      h += story({kicker:'Overview', text:p.summary, big:true, tags:p.tags, imgs:intro, link:p.link});
     }
     (p.sections || []).forEach(function(sec){ h += story(sec); });
     h += '<nav class="pager" aria-label="More projects"><a class="prev" href="project.html#'+prev.id+'"><span class="small">← Previous</span><strong>'+esc(prev.title)+'</strong></a><a class="next" href="project.html#'+next.id+'"><span class="small">Next →</span><strong>'+esc(next.title)+'</strong></a></nav>';

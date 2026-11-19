@@ -2226,12 +2226,17 @@ window.PROJECTS = [
  },
  {
   "id": "syracuse-extracurricular",
-  "title": "Extracurricular, Syracuse University",
+  "title": "Lunar New Year 2026, Syracuse University",
   "category": "Brand Work",
-  "summary": "",
-  "tags": [],
-  "meta": "",
-  "year": "",
+  "summary": "Designed two Lunar New Year 2026 greetings for Syracuse University, celebrating the Year of the Horse. One pairs Syracuse orange with a gold paper texture, lanterns and a galloping horse; the other uses a red-and-gold Chinese New Year palette with paper-cut patterns, plum blossoms and a 馬来運轉 seal. Syracuse University staff shared the artwork with alumni, parents and students on LinkedIn, credited to me as a member of the Class of 2028.",
+  "tags": [
+   "Illustration",
+   "Graphic Design",
+   "Cultural Design",
+   "University Communications"
+  ],
+  "meta": "Syracuse, NY · February 2026",
+  "year": "2026",
   "sections": [],
   "also": [
    "Content Creation"
@@ -2251,7 +2256,12 @@ window.PROJECTS = [
   "intro_imgs": [
    0,
    1
-  ]
+  ],
+  "role": "Illustrator & Graphic Designer",
+  "link": {
+   "label": "See the post on LinkedIn",
+   "url": "https://www.linkedin.com/feed/update/urn:li:activity:7430214567873568770/"
+  }
  },
  {
   "id": "creel-house",
